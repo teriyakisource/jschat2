@@ -5,9 +5,11 @@ $(document).ready(function(){
 
 
 function writeMessage(localMessageID)
-{
+{   
+    
+    
     var lemessage = document.getElementById("message").value;
-    console.log(lemessage)
+    
     clearTextBox();
 
     
@@ -162,8 +164,6 @@ function usersOnlineRef(){
 function clearTextBox(){
     document.getElementById('message').value = ''
 }
-function resetHistory(){
-  //todo
-}
+
 // MORE TODO is to make the online + offline automated as is a bit annoying RN this can be done with COOKIES
 //Progress: Made The Offline and Online is ready to be automated with only the person involved able to say "offline". Other people cannot. We need cookies. OR. We can have a log in system. I am going to do some work on this with u when u back

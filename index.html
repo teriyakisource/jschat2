@@ -73,7 +73,7 @@
     </div>
 
     <div id= writemessage>
-      <input type = "text" placeholder = "Message" id = "message" onkeydown = "if (event.keyCode == 13) document.getElementById('on').click() autocomplete='off'">
+      <input type = "text" placeholder = "Message" id = "message" onkeydown = "if (event.keyCode == 13) document.getElementById('on').click()" autocomplete= "off">
       
       <button onclick= "writeMessage(),document.getElementById('message').value = ''" id = "on">send</button>
     </div>
