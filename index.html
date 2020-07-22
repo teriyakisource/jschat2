@@ -11,13 +11,14 @@
 
     <!-- FIREBASE CANCER -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.16.1/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.16.1/firebase.js"></script>
     <script src="script.js"></script>
 
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
 
 <script>
   // Your web app's Firebase configuration
@@ -35,6 +36,14 @@
     firebase.initializeApp(firebaseConfig);
     firebase.analytics();
 
+  //  service firebase.storage {
+   //     match /b/{bucket}/o {
+   //         match /{allPaths=**} {
+  //              allow read, write: if request.auth != null;
+ // //          }
+    ///    }
+   // }
+
 
 
     var myVar;
@@ -49,36 +58,124 @@
     
 
     </script>
+    <div id='login'>
+        <input id = 'email' type = 'email' placehoder = 'email'>
+        <input id = 'password' type = 'password' placehoder = 'password' onkeydown = "if (event.keyCode == 13) document.getElementById('Log In').click()">
+        <button onclick= "login()">Log In</button>
+        <button onclick= "signUp()">Sign Up</button>
+        <br>Help with your account? Just ask Vass or James
+    </div>
+
+
+    <div id="master">
+        <div id="main" align = "right">
+            <h2 align = "right">People Online</h2>
+            <button id = 'signOut' onclick = "signOut()">Sign Out</button>
+
+            <p id = "people", align = "right"></p>
+            <button onclick= "usersOfflineSetMASTER()">MasterOverideOffline</button>
+            <button onclick= "deleteButton()">Reset Messages</button>
+            <p id = "nameField"> </p>
+        </div>
+        <div id="MessageStream">
+            <h2>Message Stream:<h2>
+
+        </div>
+        <div id="main">
+            <p id = "data"></p>
+        </div>
+
+        <div id= writemessage>
+            <input type = "text" placeholder = "Message" id = "message" onkeydown = "if (event.keyCode == 13) document.getElementById('on').click()" autocomplete= "off">
+        
+            <button onclick= "writeMessage(),document.getElementById('message').value = ''" id = "on">send</button>
+        </div>
+    </div>
+
+    <script>
+    document.getElementById("master").style.display = "none"
+    document.getElementById("login").style.display = "block"
     
+    function login(){
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(error.message)
+      }); 
+    }
+    function signOut(){
+      firebase.auth().signOut().then(function() {
+      console.log('Signed out Successfull')
+      }).catch(function(error) {
+      console.log('Signed out Failed')
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(error.message)
+      }); 
+    }
 
-
-
-    <div id="main">
-        <h2 align = "right">People Online</h2>
-
-        <p id = "people", align = "right"></p>
-      <h2>Username:</h2>
-      <button onclick= "usersOnlineSet()">Set Online</button>
-      <button onclick= "usersOfflineSet()">Set Offline</button>
-      <button onclick= "usersOfflineSetMASTER()">MasterOverideOffline</button>
-      <button onclick= "deleteButton()">Reset Messages</button>
-      <input type = "text" placeholder = "Username" id = "nameField">
-    </div>
-    <div id="MessageStream">
-        <h2>Message Stream:<h2>
-  
-    </div>
-    <div id="main">
-        <p id = "data"></p>
-    </div>
-
-    <div id= writemessage>
-      <input type = "text" placeholder = "Message" id = "message" onkeydown = "if (event.keyCode == 13) document.getElementById('on').click()" autocomplete= "off">
+    function signUp(){
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
       
-      <button onclick= "writeMessage(),document.getElementById('message').value = ''" id = "on">send</button>
-    </div>
+      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert(error.message)
+      });
+    }
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+        // User is signed in.
+        var username = user.email;
+        window.username = username;
+        document.getElementById("master").style.display = "block"
+        document.getElementById("login").style.display = "none"
 
-  
+        //Sets Online Auto
+        firebase.database().ref('/Users/').once('value', function(snapshot){ 
+            snapshot.forEach(function(childSnapshot){
+              var childData = childSnapshot.val();
+              window.use = childData
+            });
 
+
+        });
+        online = window.username + '<br>' ;
+        firebase.database().ref("/Users/").set({
+          User: window.use + online 
+        });
+
+        
+        } else {
+        // user signed out
+        document.getElementById("master").style.display = "none"
+        document.getElementById("login").style.display = "block"
+        
+
+        firebase.database().ref('/Users/').once('value', function(snapshot){ 
+            snapshot.forEach(function(childSnapshot){
+              var childData = childSnapshot.val();
+              window.use = childData
+            });
+        });
+        online = window.username + '<br>';
+        console.log(online)
+        use1 = window.use
+        use = use1.replace(online, " ")
+        console.log(use)
+
+        firebase.database().ref("/Users/").set({
+          User: use
+        });
+        
+        }
+     
+    });
+    </script>
   </body>
 </html>

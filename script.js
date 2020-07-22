@@ -1,7 +1,3 @@
-$(document).ready(function(){
-    
-})
-
 
 
 function writeMessage(localMessageID)
@@ -15,7 +11,7 @@ function writeMessage(localMessageID)
     
     // if (document.getElementById("nameField") = ""){
     //     $(document).ready(function(){
-    //     alert("Set a username first!")
+    //     alert("Set a window.username first!")
     //     })
     // }
     
@@ -35,7 +31,7 @@ function writeMessage(localMessageID)
             })
             
             firebase.database().ref("Messages/" + localMessageID).set({
-                Username: document.getElementById("nameField").value,
+                Username: window.window.username,
                 Message: lemessage,
                 Messageno: localMessageID
                 
@@ -112,33 +108,15 @@ function usersOnlineSet(){
 
 
   });
-    online = document.getElementById("nameField").value;
+    online = window.username;
     firebase.database().ref("/Users/").set({
         User: use + online
     
     });
 }
 
-function usersOfflineSet(){
-  firebase.database().ref('/Users/').once('value', function(snapshot){ 
-    snapshot.forEach(function(childSnapshot){
-        var childData = childSnapshot.val();
-        use = childData;
-        console.log(use)
-    });
 
 
-  });
-    offline = '';
-    if (use ==  document.getElementById("nameField").value){
-      firebase.database().ref("/Users/").set({
-        User: offline
-    
-      });
-
-    }
-    
-}
 function usersOfflineSetMASTER(){
   offline = '';
   firebase.database().ref("/Users/").set({
