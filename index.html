@@ -58,6 +58,9 @@
     
 
     </script>
+    <div>
+        <h1>JsChat2</h1>
+    </div>
     <div id='login'>
         <input id = 'email' type = 'email' placehoder = 'email'>
         <input id = 'password' type = 'password' placehoder = 'password' onkeydown = "if (event.keyCode == 13) document.getElementById('Log In').click()">
@@ -86,9 +89,10 @@
         </div>
 
         <div id= writemessage>
-            <input type = "text" placeholder = "Message" id = "message" onkeydown = "if (event.keyCode == 13) document.getElementById('on').click()" autocomplete= "off">
+            <input type = "text" placeholder = "Message" id = "message" onkeydown = "if (event.keyCode == 13) document.getElementById('on').click()" autocomplete= "off" >
+    
         
-            <button onclick= "writeMessage(),document.getElementById('message').value = ''" id = "on">send</button>
+            <button onclick= "writeMessage(),document.getElementById('message').value = ''" id = "on">Send</button>
         </div>
     </div>
 

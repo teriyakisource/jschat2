@@ -143,5 +143,28 @@ function clearTextBox(){
     document.getElementById('message').value = ''
 }
 
+window.addEventListener('beforeunload', function (e) {
+    
+        document.getElementById("master").style.display = "none"
+        document.getElementById("login").style.display = "block"
+        
+
+        firebase.database().ref('/Users/').once('value', function(snapshot){ 
+            snapshot.forEach(function(childSnapshot){
+              var childData = childSnapshot.val();
+              window.use = childData
+            });
+        });
+        online = window.username + '<br>';
+        console.log(online)
+        use1 = window.use
+        use = use1.replace(online, " ")
+        console.log(use)
+
+        firebase.database().ref("/Users/").set({
+          User: use
+        });
+});
+
 // MORE TODO is to make the online + offline automated as is a bit annoying RN this can be done with COOKIES
 //Progress: Made The Offline and Online is ready to be automated with only the person involved able to say "offline". Other people cannot. We need cookies. OR. We can have a log in system. I am going to do some work on this with u when u back

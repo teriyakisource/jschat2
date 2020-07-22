@@ -1,28 +1,58 @@
-
+input{
+  border: 1px solid #1D9AF2;
+  color: #1D9AF2;
+  background-color: #292D3E;
+  padding: 0 15px;
+  height:32px;
+ }
 
 #main
 {
     font-family: sans-serif;
+    color: white;
     position: sticky;
 }
 
-
+#login{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
 
 #MessageStream{
     font-family: sans-serif;
+    color: #1d9af2;
     position: sticky;
 }
 #data{
   position: static;
+
 }
+
 #writemessage{
   bottom: 0;
   position: static;
-  
+}
+button{
+  color: #1D9AF2;
+  background-color: #292D3E;
+  border: 1px solid #1D9AF2;
+  border-radius: 4px;
+  padding: 0 15px;
+  cursor: pointer;
+  height:32px;
+  font-size:14px;
+  transition: all 0.2s ease-in-out;
+}
+button:hover {
+transform: scale(0.8);
 }
 body {
- background-color: rgb(155, 155, 155);
+ background-color: #13172c;
+ background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/papyrus-dark.png);
+ color: white;
+ 
 }
-
-
-
