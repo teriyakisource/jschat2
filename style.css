@@ -2,14 +2,14 @@
 
 #main
 {
-    font-family: roboto;
+    font-family: sans-serif;
     position: sticky;
 }
 
 
 
 #MessageStream{
-    font-family: roboto;
+    font-family: sans-serif;
     position: sticky;
 }
 #data{
@@ -21,5 +21,8 @@
   
 }
 body {
- background-color:rgb(162, 210, 230);
+ background-color: rgb(155, 155, 155);
 }
+
+
+
