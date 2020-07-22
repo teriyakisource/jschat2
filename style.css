@@ -1,14 +1,32 @@
+@font-face {
+  font-family: monster;
+  src: url(Montserrat-Regular.ttf);
+}
+
+
+
 input{
   border: 1px solid #1D9AF2;
   color: #1D9AF2;
   background-color: #292D3E;
   padding: 0 15px;
   height:32px;
- }
+}
+#title{
+  transition: all 0.4s ease-in-out;
+}
+#title:hover{
+  transform: scale(0.9);
 
+}
+#title:active{
+  transform: scale(0.9);
+  transform: rotate(180deg);
+
+}
 #main
 {
-    font-family: sans-serif;
+    font-family: monster;
     color: white;
     position: sticky;
 }
@@ -23,7 +41,7 @@ input{
 }
 
 #MessageStream{
-    font-family: sans-serif;
+    font-family: monster;
     color: #1d9af2;
     position: sticky;
 }
@@ -51,6 +69,7 @@ button:hover {
 transform: scale(0.8);
 }
 body {
+ font-family: monster;
  background-color: #13172c;
  background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/papyrus-dark.png);
  color: white;
