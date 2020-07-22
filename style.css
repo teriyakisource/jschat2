@@ -1,0 +1,25 @@
+
+
+#main
+{
+    font-family: roboto;
+    position: sticky;
+}
+
+
+
+#MessageStream{
+    font-family: roboto;
+    position: sticky;
+}
+#data{
+  position: static;
+}
+#writemessage{
+  bottom: 0;
+  position: static;
+  
+}
+body {
+ background-color:rgb(162, 210, 230);
+}

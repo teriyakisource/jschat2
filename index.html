@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>hackerman chat</title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+
+    <!-- FIREBASE CANCER -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.16.1/firebase.js"></script>
+    <script src="script.js"></script>
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyAtR3O81i3plrah_kHnRPX6t5eXsGpWACI",
+        authDomain: "python-chat-8e24e.firebaseapp.com",
+        databaseURL: "https://python-chat-8e24e.firebaseio.com",
+        projectId: "python-chat-8e24e", 
+        storageBucket: "python-chat-8e24e.appspot.com",
+        messagingSenderId: "773716771181",
+        appId: "1:773716771181:web:e9753bbef6a515b5cc9a64",
+        measurementId: "G-ZR2YGGVS9E"
+};
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+
+
+    var myVar;
+    getData()
+    //Refresh is here. It is currently set to 1000ms or 1s YAY
+    myVar = setInterval(getData, 100);
+    var online = '';
+    usersOnlineRef()
+    
+
+    
+    
+
+    </script>
+    
+
+
+
+    <div id="main">
+        <h2 align = "right">People Online</h2>
+
+        <p id = "people", align = "right"></p>
+      <h2>Username:</h2>
+      <button onclick= "usersOnlineSet()">Set Online</button>
+      <button onclick= "usersOfflineSet()">Set Offline</button>
+      <button onclick= "usersOfflineSetMASTER()">MasterOverideOffline</button>
+      <button onclick= "deleteButton()">Reset Messages</button>
+      <input type = "text" placeholder = "Username" id = "nameField">
+    </div>
+    <div id="MessageStream">
+        <h2>Message Stream:<h2>
+  
+    </div>
+    <div id="main">
+        <p id = "data"></p>
+    </div>
+
+    <div id= writemessage>
+      <input type = "text" placeholder = "Message" id = "message" onkeydown = "if (event.keyCode == 13) document.getElementById('on').click() autocomplete='off'">
+      
+      <button onclick= "writeMessage(),document.getElementById('message').value = ''" id = "on">send</button>
+    </div>
+
+  
+
+  </body>
+</html>
