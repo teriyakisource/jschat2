@@ -1,6 +1,33 @@
 
 
 
+z = 0
+function ColorChange(){
+  if(z == 0){
+    document.getElementById("title1").style.color = "turquoise";
+    document.getElementById("master").style.color = "turquoise";
+    z = z + 1
+  }else if(z == 1){
+    document.getElementById("title1").style.color = "silver";
+    document.getElementById("master").style.color = "silver";
+    z = z + 1
+  }else if(z == 2){
+    document.getElementById("title1").style.color = "lime";
+    document.getElementById("master").style.color = "lime";
+    z = z + 1
+  }
+  else if(z == 3){
+    document.getElementById("title1").style.color = "blue";
+    document.getElementById("master").style.color = "blue";
+    z = z + 1
+  }else if(z == 4){
+    document.getElementById("title1").style.color = "white";
+    document.getElementById("master").style.color = "white";
+    z = 0
+  }
+}
+
+
 function writeMessage(localMessageID)
 {   
     

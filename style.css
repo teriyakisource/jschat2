@@ -2,8 +2,9 @@
   font-family: monster;
   src: url(Montserrat-Regular.ttf);
 }
-
-
+#musicControls{
+  left: 0 !important;
+}
 
 input{
   border: 1px solid #1D9AF2;
@@ -11,24 +12,37 @@ input{
   background-color: #292D3E;
   padding: 0 15px;
   height:32px;
+  
+
+  border-radius: 5px;
 }
 #title{
   transition: all 0.4s ease-in-out;
+  text-align:center;
 }
 #title:hover{
-  transform: scale(0.9);
-
+  transform:scale(0.9);
 }
-#title:active{
-  transform: scale(0.9);
-  transform: rotate(180deg);
+
+#message{
+    width: 500px;
+}
+
+#writemessage{
+  bottom: 0;
+  position: static;
+  display: inline-block
+  
+
 
 }
 #main
 {
-    font-family: monster;
-    color: white;
-    position: sticky;
+  position:fixed;
+  top:0;
+  right: 0;
+  writing-mode: horizontal-tb;  
+
 }
 
 #login{
@@ -40,20 +54,11 @@ input{
   transform: translate(-50%, -50%)
 }
 
-#MessageStream{
-    font-family: monster;
-    color: #1d9af2;
-    position: sticky;
-}
 #data{
   position: static;
 
 }
 
-#writemessage{
-  bottom: 0;
-  position: static;
-}
 button{
   color: #1D9AF2;
   background-color: #292D3E;
@@ -73,5 +78,4 @@ body {
  background-color: #13172c;
  background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/papyrus-dark.png);
  color: white;
- 
 }
