@@ -172,8 +172,12 @@
 
         });
         online = window.username + '<br>' ;
+        b = window.use + online;
+        console.log("le epic" + b.replace("undefined", " "));
+        c = b.replace("undefined<br>", " ");
         firebase.database().ref("/Users/").set({
-          User: window.use + online 
+          
+          User: c
         });
 
         
@@ -190,13 +194,14 @@
             });
         });
         online = window.username + '<br>';
-        console.log(online)
+        console.log(online);
         use1 = window.use
-        use = use1.replace(online, " ")
-        console.log(use)
+        use = use1.replace(online, " ");
+        use2 = use.replace("undefined", " ");
+        console.log(use2)
 
         firebase.database().ref("/Users/").set({
-          User: use
+          User: use2
         });
         
         }
