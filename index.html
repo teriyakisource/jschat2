@@ -86,18 +86,7 @@
             <button onclick= "deleteButton()">Reset Messages</button>
             <p id = "nameField"> </p>
 
-            <audio controls id = 'music'>
-              <source src="Music.mp3" type="audio/mpeg">
-              Your browser does not support the audio element.
-            </audio>
-            <p>Use these to play music</p>
-            <div id = "musicControls">
-              <button onclick="play()" type="button">Play </button>
-              <button onclick="pause()" type="button">Pause</button>
-              <button onclick=" VolUp()" type="button">Vol Up </button>
-              <button onclick="VolDown()" type="button">Vol Down</button>
-              <button onclick=" Mute()" type="button">Mute</button>
-            </div>
+
 
         </div>
         <div id="MessageStream">
@@ -119,7 +108,7 @@
     <script>
     document.getElementById("master").style.display = "none"
     document.getElementById("login").style.display = "block"
-    document.getElementById("music").style.display = "none";
+
     
     function login(){
       var email = document.getElementById("email").value;
@@ -160,7 +149,7 @@
         window.username = username;
         document.getElementById("master").style.display = "block"
         document.getElementById("login").style.display = "none"
-        document.getElementById("music").style.display = "none";
+
 
         //Sets Online Auto
         firebase.database().ref('/Users/').once('value', function(snapshot){ 
@@ -176,7 +165,6 @@
         console.log("le epic" + b.replace("undefined", " "));
         c = b.replace("undefined<br>", " ");
         firebase.database().ref("/Users/").set({
-          
           User: c
         });
 
@@ -208,32 +196,6 @@
      
     });
 
-    var myMusic= document.getElementById("music");
-    function play() {
-      myMusic.play();
-    }
-
-    function pause() {
-      myMusic.pause();
-    }
-    function VolUp(){
-      if(myMusic.volume < 0.8){
-        myMusic.volume = myMusic.volume + 0.2
-      }
-      
-    }
-    function VolDown(){
-      if(myMusic.volume > 0.2){
-        myMusic.volume = myMusic.volume - 0.2
-      }      
-    }
-    function Mute(){
-      if (myMusic.volume == 0){
-        myMusic.volume = 0.2
-      }else{  
-        myMusic.volume = 0
-      }
-    }
     </script>
   </body>
 </html>

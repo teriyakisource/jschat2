@@ -158,7 +158,27 @@ function clearTextBox(){
 }
 
 window.addEventListener('beforeunload', function (e) {
+    // user signed out
+    document.getElementById("master").style.display = "none"
+    document.getElementById("login").style.display = "block"
     
+    //makes user appear offline
+    firebase.database().ref('/Users/').once('value', function(snapshot){ 
+        snapshot.forEach(function(childSnapshot){
+          var childData = childSnapshot.val();
+          window.use = childData
+        });
+    });
+    online = window.username + '<br>';
+    console.log(online);
+    use1 = window.use
+    use = use1.replace(online, " ");
+    use2 = use.replace("undefined", " ");
+    console.log(use2)
+
+    firebase.database().ref("/Users/").set({
+      User: use2
+    });
         
 });
 

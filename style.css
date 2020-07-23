@@ -2,9 +2,7 @@
   font-family: monster;
   src: url(Montserrat-Regular.ttf);
 }
-#musicControls{
-  left: 0 !important;
-}
+
 
 input{
   border: 1px solid #1D9AF2;
@@ -25,7 +23,7 @@ input{
 }
 
 #message{
-    width: 500px;
+    width: 300px;
 }
 
 #writemessage{
@@ -78,4 +76,5 @@ body {
  background-color: #13172c;
  background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/papyrus-dark.png);
  color: white;
+
 }
