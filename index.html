@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>hackerman chat</title>
+        <title>jschat2</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
@@ -82,8 +82,10 @@
             <button id = 'signOut' onclick = "signOut()">Sign Out</button>
 
             <p id = "people", align = "right"></p>
+            <div id = 'specialCommands'>
             <button onclick= "usersOfflineSetMASTER()">MasterOverideOffline</button>
             <button onclick= "deleteButton()">Reset Messages</button>
+            </div>
             <p id = "nameField"> </p>
 
 
@@ -157,6 +159,13 @@
               var childData = childSnapshot.val();
               window.use = childData
             });
+        if(username == 'james.ryrie1@gmail.com'){
+          document.getElementById('specialCommands').style.display = "block"
+        }else if(username == 'teriyakivass@gmail.com'){
+          document.getElementById('specialCommands').style.display = "block"
+        }else{
+          document.getElementById('specialCommands').style.display = "none"
+        }
 
 
         });
