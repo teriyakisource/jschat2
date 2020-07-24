@@ -1,6 +1,5 @@
 
 
-
 z = 0
 function ColorChange(){
   if(z == 0){
@@ -27,11 +26,26 @@ function ColorChange(){
   }
 }
 
+function makeRoom(){
+  var room = document.getElementById("room").value;
+  firebase.database().ref("Rooms/" + room + "/MessageIDs/").set({
+      Msgno: 1
+  });
+  firebase.database().ref("Rooms/" + room + "/Messages/" ).set({
+      Messageno: 1
+  });
+  deleteButton()
+}
 
 function writeMessage(localMessageID)
 {   
-    
-    
+    var room = document.getElementById("room").value;
+    console.log(room)
+
+
+
+
+
     var lemessage = document.getElementById("message").value;
     
     clearTextBox();
@@ -45,20 +59,24 @@ function writeMessage(localMessageID)
     
     // if (document.getElementById("textField") = "")
     // document.getElementById("myForm").reset();
-    firebase.database().ref('/MessageIDs/').once('value', function(snapshot)
+
+
+    firebase.database().ref("Rooms/" +room +'/MessageIDs/').once('value', function(snapshot)
     {
         snapshot.forEach(function(childSnapshot){
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val()
             
-            
+
             var localMessageID = childData + 1;
             
-            firebase.database().ref("MessageIDs/").set({
+            console.log(localMessageID);
+            
+            firebase.database().ref("Rooms/" +room + "/MessageIDs/").set({
                 Msgno: localMessageID
             })
             
-            firebase.database().ref("Messages/" + localMessageID).set({
+            firebase.database().ref("Rooms/" +room + "/Messages/" + localMessageID).set({
                 Username: window.window.username,
                 Message: lemessage,
                 Messageno: localMessageID
@@ -77,10 +95,11 @@ function writeMessage(localMessageID)
 
 
 function deleteButton(){
+    var room = document.getElementById("room").value;
     
-    firebase.database().ref("Messages").remove()
-
-    firebase.database().ref("MessageIDs/").set({
+    
+    firebase.database().ref("Rooms/" + room +"/Messages").remove()
+    firebase.database().ref("Rooms/" + room +"/MessageIDs/").set({
         Msgno: 1
     })
     
@@ -90,9 +109,10 @@ function deleteButton(){
 
 
 function getData(){
+    var room = document.getElementById("room").value;
 
     var output ="";
-        firebase.database().ref('/MessageIDs/').once('value', function(snapshot)
+        firebase.database().ref('Rooms/' + room + '/MessageIDs/').once('value', function(snapshot)
         {
             snapshot.forEach(function(childSnapshot){
                 var childKey = childSnapshot.key;
@@ -100,7 +120,7 @@ function getData(){
                 var localMessageID = childData;
 
 
-                firebase.database().ref('/Messages').once('value', function(snapshot){
+                firebase.database().ref("Rooms/" +room +'/Messages').once('value', function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var childKey = childSnapshot.key;
                         var childData = childSnapshot.val();

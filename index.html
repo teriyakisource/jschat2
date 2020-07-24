@@ -44,14 +44,6 @@
     ///    }
    // }
 
-
-
-    var myVar;
-    getData()
-    //Refresh is here. It is currently set to 1000ms or 1s YAY
-    myVar = setInterval(getData, 100);
-    var online = '';
-    usersOnlineRef()
     
 
     
@@ -76,6 +68,10 @@
     <div id="master">
 
         <div id="main" align = "right">
+            <button onclick= "makeRoom()">Make a Room</button>
+
+            <input id = 'room' type = 'password' placeholder = "Room" autocomplete = "off" value="MainRoom">
+
             <h2 align = "right">People Online</h2>
             <button id = 'signOut' onclick = "signOut()">Sign Out</button>
 
@@ -106,6 +102,14 @@
     </div>
 
     <script>
+    var myVar;
+    getData()
+    //Refresh is here. It is currently set to 1000ms or 1s YAY
+    myVar = setInterval(getData, 100);
+    var online = '';
+    usersOnlineRef()
+
+
     document.getElementById("master").style.display = "none"
     document.getElementById("login").style.display = "block"
 
