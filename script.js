@@ -210,5 +210,6 @@ window.addEventListener('beforeunload', function (e) {
         
 });
 
+
 // MORE TODO is to make the online + offline automated as is a bit annoying RN this can be done with COOKIES
 //Progress: Made The Offline and Online is ready to be automated with only the person involved able to say "offline". Other people cannot. We need cookies. OR. We can have a log in system. I am going to do some work on this with u when u back
