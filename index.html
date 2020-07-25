@@ -88,9 +88,8 @@
         <input id = 'password' type = 'password' placehoder = 'password' onkeydown = "if (event.keyCode == 13) document.getElementById('Log In').click()">
         <button id = 'Log In' onclick= "login()">Log In</button>
         <button onclick= "signUp()">Sign Up</button>
-        <button onclick="window.location.href='tos.html';">Terms of Service</button>
-        <br>By signing up, you agree to our terms of service
-        
+        <button onclick="window.location.href='tos.html';">Terms and Conditions</button>
+        <br>By signing up, you agree to our terms and conditions
         
     </div>
     
@@ -116,8 +115,8 @@
 
 
         </div>
-            <h2>Message Stream:<h2>
         <div id="MessageStream">
+            <h2>Message Stream:<h2>
 
         </div>
         <div>
@@ -167,15 +166,21 @@
     }
 
     function signUp(){
-      var email = document.getElementById("email").value;
+      email = document.getElementById("email").value;
       var password = document.getElementById("password").value;
+      if(email.includes('@latymer-upper.org') ){
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        alert(error.message)
+        });
+
+      }else{
+        alert('Not a school email')
+      }
       
-      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      alert(error.message)
-      });
+      
     }
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -199,6 +204,7 @@
         }else{
           document.getElementById('specialCommands').style.display = "none"
         }
+        
 
 
         });
