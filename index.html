@@ -174,7 +174,7 @@
         online = window.username + '<br>' ;
         b = window.use + online;
         console.log("le epic" + b.replace("undefined", " "));
-        c = b.replace("undefined<br>", " ");
+        c = b.replace("undefined", " ");
         firebase.database().ref("/Users/").set({
           User: c
         });

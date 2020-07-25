@@ -1,4 +1,4 @@
-
+console.log('Running');
 
 z = 0
 function ColorChange(){
@@ -35,6 +35,8 @@ function makeRoom(){
       Messageno: 1
   });
   deleteButton()
+  // Requiring fs module in which 
+  // writeFile function is defined. 
 }
 
 function writeMessage(localMessageID)
