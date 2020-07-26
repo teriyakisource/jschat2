@@ -2,7 +2,7 @@
 
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
+Notification.requestPermission()
 
 console.log('Running');
 
@@ -97,7 +97,9 @@ function writeMessage(localMessageID)
             
         })  
     })
-    
+
+
+
     
 }
 
@@ -110,16 +112,16 @@ function deleteButton(){
     firebase.database().ref("Rooms/" + room +"/MessageIDs/").set({
         Msgno: 1
     })
-    
+    window.pastMessageID = '0'
         
 
 }
 
-
+window.pastMessageID = '0'
 function getData(){
     var room = document.getElementById("room").value;
 
-    var output = "";
+    var output ="";
         firebase.database().ref('Rooms/' + room + '/MessageIDs/').once('value', function(snapshot)
         {
             snapshot.forEach(function(childSnapshot){
@@ -132,33 +134,63 @@ function getData(){
                     snapshot.forEach(function(childSnapshot){
                         var childKey = childSnapshot.key;
                         var childData = childSnapshot.val();
-                        Notification.requestPermission()
-                        output += "<br> (" + childData["Username"] + "): " + childData['Message'];
+
+
+                      
+
                         
-                       
+                        
+                        
+
+                        // output.concat("(" + childData["Username"] + "): " + childData['Message']);
+                        output += "<br> (" + childData["Username"] + "): " + childData['Message'];
+                        window.test = childData['Message'];
 
                 })
                 document.getElementById("data").innerHTML = output;
-                usersOnlineRef();
+                usersOnlineRef()
 
 
             })
     
         });
         
-    });
-    if(/* if new notification needed*/ 1 == 1){
-      if(Notification.permission === 'granted'){
-        notification = new Notification({
-          body: output
-          
+    })
+    //DO TING
+    firebase.database().ref('Rooms/' + room + '/MessageIDs/').once('value', function(snapshot)
+    {
+        snapshot.forEach(function(childSnapshot)
+        {
+            var childData = childSnapshot.val()
+            var localMessageID = childData;
+            window.localMessageID = localMessageID;
         });
-        notification.onclick = (e) => {
-          window.location.href = "jschat2.live";
-        };
-      };
-      
-    };
+
+        if(window.pastMessageID !== window.localMessageID){
+            console.log('Past Message ID: '+window.pastMessageID + ', Current Message ID'+window.localMessageID)
+            window.pastMessageID = window.localMessageID;
+            console.log('Past Message ID: '+window.pastMessageID + ', Current Message ID'+window.localMessageID)
+
+            firebase.database().ref("Rooms/" +room +'/Messages').once('value', function(snapshot){
+                snapshot.forEach(function(childSnapshot){
+                    var childData = childSnapshot.val();
+                    window.notif = childData['Message']
+                })
+            })
+            console.log(window.notif);
+            if(Notification.permission === 'granted'){
+                const notification = new Notification('New Message Recieved')
+                notification.onclick = (e) => {
+                    window.location.href = "jschat2.live";
+                };
+            };
+            
+
+        }
+
+    });
+    
+
 }
 
 
