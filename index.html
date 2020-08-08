@@ -185,17 +185,17 @@
     function signUp(){
       email = document.getElementById("email").value;
       var password = document.getElementById("password").value;
-      if(email.includes('@latymer-upper.org') ){
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        alert(error.message)
-        });
+    //   if(email.includes('@latymer-upper.org') ){
+    //     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    //     // Handle Errors here.
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    //     alert(error.message)
+    //     });
 
-      }else{
-        alert('Not a school email')
-      }
+    //   }else{
+    //     alert('Not a school email')
+    //   }
       
       
     }
