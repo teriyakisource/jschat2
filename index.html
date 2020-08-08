@@ -91,6 +91,9 @@
     
 
     </script>
+    <audio controls id ='music'>
+        <source src="Notif.mp3" type="audio/mpeg">
+    </audio>
 
     
     <div id = 'title'>
@@ -145,6 +148,7 @@
     </div>
 
     <script>
+    document.getElementById("music").style.display = "none"
     var myVar;
     getData()
     //Refresh is here. It is currently set to 1000ms or 1s YAY

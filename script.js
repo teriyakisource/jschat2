@@ -2,8 +2,8 @@
 
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-Notification.requestPermission()
-
+// Notification.requestPermission()
+window.playsound = false;
 console.log('Running');
 
 z = 0
@@ -156,7 +156,7 @@ function getData(){
         });
         
     })
-    //DO TING
+    //DO Notification
     firebase.database().ref('Rooms/' + room + '/MessageIDs/').once('value', function(snapshot)
     {
         snapshot.forEach(function(childSnapshot)
@@ -167,9 +167,11 @@ function getData(){
         });
 
         if(window.pastMessageID !== window.localMessageID){
+            window.playsound = true;
             console.log('Past Message ID: '+window.pastMessageID + ', Current Message ID'+window.localMessageID)
             window.pastMessageID = window.localMessageID;
             console.log('Past Message ID: '+window.pastMessageID + ', Current Message ID'+window.localMessageID)
+            
 
             firebase.database().ref("Rooms/" +room +'/Messages').once('value', function(snapshot){
                 snapshot.forEach(function(childSnapshot){
@@ -178,17 +180,23 @@ function getData(){
                 })
             })
             console.log(window.notif);
-            if(Notification.permission === 'granted'){
-                const notification = new Notification('New Message Recieved')
-                notification.onclick = (e) => {
-                    window.location.href = "jschat2.live";
-                };
-            };
+            // if(Notification.permission === 'granted'){
+                
+            //     const notification = new Notification('New Message Recieved')
+            //     notification.onclick = (e) => {
+            //         window.location.href = "jschat2.live";
+            //     };
+            // };
             
 
         }
 
     });
+    if(window.playsound == true){
+        var notifsound = document.getElementById('music');
+        notifsound.play();
+        playsound = false;
+    }
     
 
 }
