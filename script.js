@@ -55,10 +55,15 @@ function writeMessage(localMessageID)
 
 
 
-
+    var naughtyWordsList = ["fuck", "shit"]
 
     var lemessage = document.getElementById("message").value;
-    
+    if (lemessage == "") {
+        return
+    }
+    if (lemessage.toLowerCase() in naughtyWordsList){
+        lemessage = "[NAUGHTY WORD]"
+    }
     clearTextBox();
 
     
