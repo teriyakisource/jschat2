@@ -1,12 +1,15 @@
 //  Copyright (C) 2020 Vassilis Papavassilopoulos and James Ryrie
 
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 // Notification.requestPermission()
 window.playsound = false;
 console.log('Running');
 
 z = 0
+
+
+//this actually is fucking retarded james
+
 function ColorChange(){
   if(z == 0){
     document.getElementById("title1").style.color = "turquoise";
@@ -102,7 +105,7 @@ function writeMessage(localMessageID)
 
     
 }
-
+//messageids are all over the fucking place, we can fix this cumstain later
 
 function deleteButton(){
     var room = document.getElementById("room").value;
@@ -203,7 +206,7 @@ function getData(){
 
 
 
-
+//why the fuck - ok
 function usersOfflineSetMASTER(){
   offline = '';
   firebase.database().ref("/Users/").set({
@@ -256,4 +259,11 @@ window.addEventListener('beforeunload', function (e) {
 });
 
 // MORE TODO is to make the online + offline automated as is a bit annoying RN this can be done with COOKIES
+
+//nah bro ez we did it 
+
+//ez
+
 //Progress: Made The Offline and Online is ready to be automated with only the person involved able to say "offline". Other people cannot. We need cookies. OR. We can have a log in system. I am going to do some work on this with u when u back
+
+//even more TODO: delete all the current todos
