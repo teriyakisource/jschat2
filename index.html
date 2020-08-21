@@ -45,18 +45,18 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <title>jschat2</title>
-        <link href="style.css" rel="stylesheet" type="text/css" />
+        <link href="styling/style.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.16.1/firebase.js"></script>
-        <script src="script.js"></script>
+        <script src = "src/script.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script>
         <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
-        <script src = "firebaseconfig.js"></script>
+        <script src = "src/firebaseconfig.js"></script>
 
         <audio controls id ='music'>
-            <source src="Notif.mp3" type="audio/mpeg">
+            <source src="assets/Notif.mp3" type="audio/mpeg">
         </audio>
 
     
@@ -96,6 +96,10 @@
 
 
         </div>
+        
+        
+
+
         <div id="MessageStream">
             <h2>Message Stream:<h2>
 
@@ -110,9 +114,11 @@
         
             <button onclick= "writeMessage(),document.getElementById('message').value = ''" id = "on">Send</button>
         </div>
+        
     </div>
+  
 
-    <script src = "login.js"></script>
+    <script src = "src/login.js"></script>
     
   </body>
 </html>

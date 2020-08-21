@@ -4,11 +4,14 @@
 
 
 
-window.colorList = ["turqoise", "silver", "lime", "blue", "white"]
-window.colorCycleNo = 0
+window.colorList = ["turqoise", "silver", "lime", "blue", "white"];
+window.colorCycleNo = 0;
 
 
 
+function overlay(){
+    document.getElementById("overlay1").style.display = "block";
+}
 
 function cycleColors(){
     document.getElementById("title1").style.color = window.colorList[window.colorCycleNo];
@@ -37,15 +40,13 @@ function writeMessage(localMessageID)
 {   
     var room = document.getElementById("room").value;
     var lemessage = document.getElementById("message").value;
-    var naughtyWordsList = ["fuck", "shit"]
+    var naughtyWordsList = ["fuck", "shit", "cunt", "bitch"]
 
     for (i = 0; i < naughtyWordsList.length; i++) {
         if (lemessage.toLowerCase().search(naughtyWordsList[i]) > -1){
             clearTextBox();
-            console.log("NAUGHTY WORD")
-            lemessage = ""
-            
-
+            console.log("NAUGHTY WORD");
+            lemessage = "";
         }
     }
 
@@ -121,15 +122,7 @@ function getData(){
                 firebase.database().ref("Rooms/" +room +'/Messages').once('value', function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var childKey = childSnapshot.key;
-                        var childData = childSnapshot.val();
-
-
-                      
-
-                        
-                        
-                        
-
+                        var childData = childSnapshot.val();                                                              
                         // output.concat("(" + childData["Username"] + "): " + childData['Message']);
                         output += "<br> (" + childData["Username"] + "): " + childData['Message'];
                         window.test = childData['Message'];
