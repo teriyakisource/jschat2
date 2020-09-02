@@ -1,27 +1,36 @@
 //  Copyright (C) 2020 Vassilis Papavassilopoulos and James Ryrie
 
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
 
+console.log('Running');
 
-window.colorList = ["turqoise", "silver", "lime", "blue", "white"];
-window.colorCycleNo = 0;
-
-
-
-function overlay(){
-    document.getElementById("overlay1").style.display = "block";
+z = 0
+function ColorChange(){
+  if(z == 0){
+    document.getElementById("title1").style.color = "turquoise";
+    document.getElementById("master").style.color = "turquoise";
+    z = z + 1
+  }else if(z == 1){
+    document.getElementById("title1").style.color = "silver";
+    document.getElementById("master").style.color = "silver";
+    z = z + 1
+  }else if(z == 2){
+    document.getElementById("title1").style.color = "lime";
+    document.getElementById("master").style.color = "lime";
+    z = z + 1
+  }
+  else if(z == 3){
+    document.getElementById("title1").style.color = "blue";
+    document.getElementById("master").style.color = "blue";
+    z = z + 1
+  }else if(z == 4){
+    document.getElementById("title1").style.color = "white";
+    document.getElementById("master").style.color = "white";
+    z = 0
+  }
 }
-
-function cycleColors(){
-    document.getElementById("title1").style.color = window.colorList[window.colorCycleNo];
-    document.getElementById("master").style.color = window.colorList[window.colorCycleNo];
-    window.colorCycleNo += 1;
-    if (window.colorCycleNo == 5){
-        window.colorCycleNo == 0;
-    }
-}
-
 
 function makeRoom(){
   var room = document.getElementById("room").value;
@@ -39,23 +48,25 @@ function makeRoom(){
 function writeMessage(localMessageID)
 {   
     var room = document.getElementById("room").value;
+    console.log(room)
+
+
+
+
+
     var lemessage = document.getElementById("message").value;
-    var naughtyWordsList = ["fuck", "shit", "cunt", "bitch"]
-
-    for (i = 0; i < naughtyWordsList.length; i++) {
-        if (lemessage.toLowerCase().search(naughtyWordsList[i]) > -1){
-            clearTextBox();
-            console.log("NAUGHTY WORD");
-            lemessage = "";
-        }
-    }
-
-    
-    if (lemessage == "") {
-        return
-    }
     
     clearTextBox();
+
+    
+    // if (document.getElementById("nameField") = ""){
+    //     $(document).ready(function(){
+    //     alert("Set a window.username first!")
+    //     })
+    // }
+    
+    // if (document.getElementById("textField") = "")
+    // document.getElementById("myForm").reset();
 
 
     firebase.database().ref("Rooms/" +room +'/MessageIDs/').once('value', function(snapshot)
@@ -67,7 +78,7 @@ function writeMessage(localMessageID)
 
             var localMessageID = childData + 1;
             
-            
+            console.log(localMessageID);
             
             firebase.database().ref("Rooms/" +room + "/MessageIDs/").set({
                 Msgno: localMessageID
@@ -86,9 +97,7 @@ function writeMessage(localMessageID)
             
         })  
     })
-
-
-
+    
     
 }
 
@@ -101,12 +110,12 @@ function deleteButton(){
     firebase.database().ref("Rooms/" + room +"/MessageIDs/").set({
         Msgno: 1
     })
-    window.pastMessageID = '0'
+    
         
 
 }
 
-window.pastMessageID = '0'
+
 function getData(){
     var room = document.getElementById("room").value;
 
@@ -122,10 +131,18 @@ function getData(){
                 firebase.database().ref("Rooms/" +room +'/Messages').once('value', function(snapshot){
                     snapshot.forEach(function(childSnapshot){
                         var childKey = childSnapshot.key;
-                        var childData = childSnapshot.val();                                                              
+                        var childData = childSnapshot.val();
+
+                      
+
+                        
+                        
+                        
+
                         // output.concat("(" + childData["Username"] + "): " + childData['Message']);
                         output += "<br> (" + childData["Username"] + "): " + childData['Message'];
-                        window.test = childData['Message'];
+                        
+                       
 
                 })
                 document.getElementById("data").innerHTML = output;
@@ -137,40 +154,16 @@ function getData(){
         });
         
     })
-    
-    firebase.database().ref('Rooms/' + room + '/MessageIDs/').once('value', function(snapshot)
-    {
-        snapshot.forEach(function(childSnapshot)
-        {
-            var childData = childSnapshot.val()
-            var localMessageID = childData;
-            window.localMessageID = localMessageID;
-        });
-
-        if(window.pastMessageID !== window.localMessageID){
-            (document.getElementById("music")).play();
-            window.pastMessageID = window.localMessageID;
-
-            firebase.database().ref("Rooms/" +room +'/Messages').once('value', function(snapshot){
-                snapshot.forEach(function(childSnapshot){
-                    var childData = childSnapshot.val();
-                    window.notif = childData['Message']
-                })
-            })
-                 
-        }
-
-    });
-
 }
 
 
 
-//why the fuck - ok
+
 function usersOfflineSetMASTER(){
   offline = '';
   firebase.database().ref("/Users/").set({
     User: offline
+    
     });
 
 }
@@ -205,11 +198,11 @@ window.addEventListener('beforeunload', function (e) {
         });
     });
     online = window.username + '<br>';
-    
+    console.log(online);
     use1 = window.use
     use = use1.replace(online, " ");
     use2 = use.replace("undefined", " ");
-    
+    console.log(use2)
 
     firebase.database().ref("/Users/").set({
       User: use2
@@ -217,7 +210,5 @@ window.addEventListener('beforeunload', function (e) {
         
 });
 
-
-
-
-//even more TODO: delete all the current todos
+// MORE TODO is to make the online + offline automated as is a bit annoying RN this can be done with COOKIES
+//Progress: Made The Offline and Online is ready to be automated with only the person involved able to say "offline". Other people cannot. We need cookies. OR. We can have a log in system. I am going to do some work on this with u when u back
