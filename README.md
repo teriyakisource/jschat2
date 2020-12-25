@@ -3,11 +3,11 @@ Chat in javascript using firebase.
 
 # Welcome To JsChat2.
 
-![alt text](https://github.com/teriyakisource/jschat2/blob/main/signup.jpg?raw=true)
+![Sign Up](https://github.com/teriyakisource/jschat2/blob/master/signup.jpg?raw=true)
 
 Simple Email Authentication using firebase. 
 
-![alt text](https://github.com/teriyakisource/jschat2/blob/main/hom.jpg?raw=true)
+![Home Page](https://github.com/teriyakisource/jschat2/blob/master/home.jpg?raw=true)
 
 Basic UI including online users, Room Changer, Administrative tools, (a small easter egg) and a message field.
 
